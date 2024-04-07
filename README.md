@@ -7,8 +7,7 @@ A classic Tic Tac Toe game built with HTML, CSS, and JavaScript.
 
 ## Demo
 
-<img src="https://github.com/rayhaangeneral/Tic-Tac-Toe-by-Rayhaan-in-html/assets/66080958/11621e9f-3b21-4530-9b3e-a090fb1ccffb" alt="Tic Tac Toe by Rayhaan-in html"  width="610" height="330"  />
-
+[![Tic Tac Toe by Rayhaan-in html](https://github.com/rayhaangeneral/Tic-Tac-Toe-by-Rayhaan-in-html/assets/66080958/11621e9f-3b21-4530-9b3e-a090fb1ccffb)](https://htmlpreview.github.io/?https://github.com/rayhaangeneral/Tic-Tac-Toe-by-Rayhaan-in-html/blob/main/Tic%20Tac%20Toe%20by%20Rayhaan.html)
 
 ## Features
 - Interactive 3x3 game board
