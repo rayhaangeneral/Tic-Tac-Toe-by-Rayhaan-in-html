@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        /* Styles for the body */
+        body {
+            background-color: #6b3a3a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Styles for the h1 */
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 90px;
+            padding: 1.5px;
+            top: 0;
+            z-index: 1;
+        }
+
+        /* Styles for the game info */
+        .game-info {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Styles for the game board */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Styles for the individual cells */
+        .cell {
+            background-color: #fff;
+            border: 2px solid #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: #222222; /* Changed cell text color to grey */
+        }
+
+        /* Styles for the cell hover effect */
+        .cell:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Styles for the winning cells */
+        .winner {
+            background-color: #4CAF50;
+            color: #fff; /* Changed winner text color to white */
+        }
+
+        /* Styles for the restart button */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Display the game title -->
+    <h1>Tic Tac Toe</h1>
+
+    <!-- Display the game information -->
+    <div class="game-info">
+        <p>Welcome to Tic Tac Toe!</p>
+        <p>This is a classic game where two players take turns marking spaces in a 3x3 grid. The player who succeeds in
+            placing three of their marks in a horizontal, vertical, or diagonal row wins the game.</p>
+    </div>
+
+    <!-- The game board -->
+    <div class="board" onclick="play(event)">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <!-- The restart button -->
+    <button onclick="resetBoard()">Restart</button>
+
+    <script>
+        let currentPlayer = 'X';
+        const cells = document.querySelectorAll('.cell');
+
+        // Function to handle a player's move
+        function play(event) {
+            const cell = event.target;
+            if (cell.classList.contains('cell') && !cell.textContent) {
+                cell.textContent = currentPlayer;
+                cell.style.color = '#000000'; // Set the text color of the cell to grey
+                if (checkWin()) {
+                    alert(`${currentPlayer} wins!`);
+                    highlightWinningCells();
+                    return;
+                }
+                if (checkDraw()) {
+                    alert("It's a draw!");
+                    resetBoard();
+                    return;
+                }
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+
+        // Function to check if a player has won
+        function checkWin() {
+            const winConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            return winConditions.some(condition => {
+                return condition.every(index => {
+                    return cells[index].textContent === currentPlayer;
+                });
+            });
+        }
+
+        // Function to check if the game is a draw
+        function checkDraw() {
+            return [...cells].every(cell => {
+                return cell.textContent;
+            });
+        }
+
+        // Function to reset the game board
+        function resetBoard() {
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('winner');
+                cell.style.color = '#ccc'; // Reset the text color of the cell to grey
+            });
+            currentPlayer = 'X';
+        }
+
+        // Function to highlight the winning cells
+        function highlightWinningCells() {
+            const winningCells = Array.from(cells).filter(cell => cell.textContent === currentPlayer);
+            winningCells.forEach(cell => {
+                cell.classList.add('winner');
+                cell.style.color = '#fff'; // Set the text color of the winner cells to white
+            });
+        }
+    </script>
+</body>
+
+</html>
