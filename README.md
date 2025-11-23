@@ -46,7 +46,7 @@ This project is licensed under the Creative Commons Zero v1.0 Universal License.
 
 ## Support
 
-For support, visit our website http://rayhaangeneral.gq
+For support, visit our website http://rayhaan.fronxx.com
 
 
 ## Contributing
